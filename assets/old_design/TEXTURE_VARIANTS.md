@@ -4,8 +4,8 @@
 所有版本共享同一套冻结元素（布局、文案、字体、Logo、签名、配色、分隔线完全一致），
 仅背景纹理不同；中间 1080×608 黑色占位区在所有版本中保持纯黑。
 
-**结论：E（等高线版）已被选定为正式版本**，固化进 `../config/frame_v1.yaml`
-的 `texture` 配置节，正式资产由 `../scripts/generate_frame.py` 生成
+**结论：E（等高线版）已被选定为正式版本**，固化进 `../../config/frame_v1.yaml`
+的 `texture` 配置节，正式资产由 `../../scripts/generate_frame.py` 生成
 （输出与 `frame_v1_E.png` 逐像素一致）。其余版本文件保留备查。
 
 复现全部 8 个版本与对照图：
@@ -48,8 +48,8 @@ BICUBIC 放大成平滑标量场，按 8 个等值层级（场值 42–220、步
 容差带，BILINEAR 放大 + 1px 高斯柔化成软线；线色相对主背景提亮 26、
 峰值透明度 70，收尾细颗粒 alpha=3。
 
-> 已固化：正式参数见 `../config/frame_v1.yaml` 的 `texture.contour`，
-> 由 `../scripts/generate_frame.py` 生成正式资产。
+> 已固化：正式参数见 `../../config/frame_v1.yaml` 的 `texture.contour`，
+> 由 `../../scripts/generate_frame.py` 生成正式资产。
 
 ### F · 细腻布纹 — [frame_v1_F.png](frame_v1_F.png)
 
