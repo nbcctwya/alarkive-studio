@@ -1,0 +1,271 @@
+# ============================================================
+# Alark Frame v1.0（冻结规范）· 内容母版配置
+# 由 scripts/generate_frame.py 读取；所有位置/尺寸/颜色/字号在此调整。
+# 坐标系：各区域局部坐标，原点为区域左上角，单位 px。
+# ============================================================
+
+version: "1.0"
+
+canvas:
+  width: 1080
+  height: 1328            # header + broll + footer
+  header_height: 440
+  broll_height: 608
+  footer_height: 280
+
+# 标准 9:16 输出（1080x1920）= 上黑边 296 + Frame 1328 + 下黑边 296
+# 第一阶段只定义参数，不输出 wrapped 图。
+wrapped_9_16:
+  width: 1080
+  height: 1920
+  padding_top: 296
+  padding_bottom: 296
+  background: "#000000"
+
+colors:
+  background: "#0D3A2A"        # 主背景深墨绿
+  text_primary: "#F3E8D2"      # 主文字暖米白
+  subtitle: "#F7F5F0"          # 暖白字幕
+  accent: "#D9AA54"            # 强调暖金
+  outer_black: "#000000"       # 外层黑
+
+# ------------------------------------------------------------
+# 字体：每个角色是候选列表，脚本按顺序尝试加载，第一个成功者生效。
+# 安装思源字体后，把对应字体文件路径放到列表最前即可自动优先使用，例如：
+#   - path: "C:/Windows/Fonts/SourceHanSerifSC-SemiBold.otf"
+# ------------------------------------------------------------
+fonts:
+  serif_en:        # 英文衬线：顶部小字、刊名 Alark、右侧竖排、底部英文
+    - path: "C:/Windows/Fonts/georgia.ttf"
+      index: 0
+    - path: "C:/Windows/Fonts/times.ttf"
+      index: 0
+  serif_en_bold:   # 刊名 Alark 用粗衬线
+    - path: "C:/Windows/Fonts/georgiab.ttf"
+      index: 0
+    - path: "C:/Windows/Fonts/timesbd.ttf"
+      index: 0
+  serif_cn:        # 中文衬线（思源宋体 SemiBold 回退链）。
+    # 注意：Windows 的 simsunb.ttf 实为 SimSun-ExtB（罕用字集），不能作为
+    # 常规宋体 Bold 使用；这里用 simsun.ttc + stroke_width 模拟 SemiBold 字重。
+    # 安装 Source Han Serif SC 后将其路径置于首位并去掉 stroke_width。
+    - path: "C:/Windows/Fonts/SourceHanSerifSC-SemiBold.otf"
+      index: 0
+      stroke_width: 0
+    - path: "C:/Windows/Fonts/simsun.ttc"
+      index: 0
+      stroke_width: 1        # 模拟 SemiBold
+  serif_cn_light:  # 中文衬线常规字重：slogan 等弱层级文字
+    - path: "C:/Windows/Fonts/SourceHanSerifSC-Regular.otf"
+      index: 0
+      stroke_width: 0
+    - path: "C:/Windows/Fonts/simsun.ttc"
+      index: 0
+      stroke_width: 0
+  sans_cn_heavy:   # 动态主标题用（Source Han Sans SC Heavy 回退 simhei/msyhbd）
+    - path: "C:/Windows/Fonts/SourceHanSansSC-Heavy.otf"
+      index: 0
+    - path: "C:/Windows/Fonts/simhei.ttf"
+      index: 0
+    - path: "C:/Windows/Fonts/msyhbd.ttc"
+      index: 0
+
+# ------------------------------------------------------------
+# 纹理：固定 seed，输出完全可重复。对比度极低，不影响阅读。
+# ------------------------------------------------------------
+texture:
+  seed: 20260923
+  # 正式纹理：E 版等高线（自 generate_texture_variants.py 的 tex_E 转正）。
+  # seed_salt 与变体版完全一致，保证正式输出与 frame_v1_E.png 逐像素相同。
+  seed_salt: "texture-variants-v1-E"
+  paper_noise_alpha: 3       # 收尾细颗粒（0-255，极小）
+  contour:                   # 极淡拓扑等高线：平滑随机场的等值线
+    field_size: [36, 14]     # 随机场低分辨率（放大后自然平滑）
+    levels: { start: 42, stop: 220, step: 22 }   # 等值线层级（场值 0-255）
+    band: 1                  # 等值线半带宽（场值单位）
+    line_lighten: 26         # 线条颜色相对主背景的提亮量
+    line_alpha: 70           # 线条峰值透明度（软边递减）
+    mask_blur: 1             # 线条高斯柔化半径
+
+# ------------------------------------------------------------
+# Header 1080x440
+# ------------------------------------------------------------
+header:
+  top_text:
+    text: "ALARK · INSIGHTS FOR A BETTER TOMORROW"
+    x: 48
+    y: 36
+    size: 23
+    tracking: 7              # 字距 px
+    color: "#F3E8D2"
+    alpha: 200
+    font: serif_en
+
+  left_rule:                 # 主标题视觉起点竖线
+    x: 48
+    y_top: 108
+    y_bottom: 296
+    width: 6
+    color: "#D9AA54"
+    alpha: 235
+
+  signature:
+    file: "assets/brand/alark_signature_chalk_white.png"
+    width: 330               # 高度按原比例缩放
+    anchor: top_right
+    margin_right: 64
+    margin_top: 42
+    opacity: 0.25            # 品牌水印，不抢主标题
+
+  right_list:                # 右侧竖排固定文案
+    lines: ["IDEAS", "LIFE", "PEOPLE", "A BRIGHT TOMORROW"]
+    align: right
+    x_right: 1032
+    y_top: 208
+    line_height: 36
+    size: 20
+    tracking: 5
+    color: "#F3E8D2"
+    alpha: 215
+    font: serif_en
+    dash:                    # 列表末尾小横线装饰
+      width: 42
+      height: 2
+      gap: 14
+      color: "#F3E8D2"
+      alpha: 180
+
+  bottom_left:
+    lines: ["A MORE AWARE", "AND FREE LIFE"]
+    x: 48
+    y_bottom: 42             # 距 Header 底边距离
+    line_height: 34
+    size: 22
+    tracking: 6
+    color: "#F3E8D2"
+    alpha: 215
+    font: serif_en
+
+  bottom_rule:               # Header/B-roll 交界分隔线（画在 header_base 底缘）
+    height: 2
+    color: "#F3E8D2"
+    alpha: 150
+
+  # 动态主标题规范（底图不绘制，视频阶段使用）
+  title_dynamic:
+    max_lines: 4
+    preferred_lines: [2, 3]
+    color: "#F3E8D2"
+    accent_color: "#D9AA54"  # 只允许 1 个强调词/短语
+    font: sans_cn_heavy
+    size: 96
+    line_height: 124
+    x: 96
+    y_top: 130
+    align: left
+    reserved_area: { x: 96, y: 110, width: 700, height: 240 }
+
+# ------------------------------------------------------------
+# B-roll 1080x608（第一阶段仅黑色占位）
+# ------------------------------------------------------------
+broll:
+  width: 1080
+  height: 608
+  placeholder_color: "#000000"
+  fit: contain_center_crop   # 等比缩放，禁止拉伸/黑边；比例略异可轻微 Center Crop
+
+# 字幕规范（第一阶段不绘制，视频阶段使用）
+subtitle:
+  offset_from_broll_bottom: [60, 85]
+  color: "#F7F5F0"
+  size: [46, 52]
+  max_lines: 2
+  stroke_color: "#000000"
+  stroke_width: [2, 3]
+  shadow: { enabled: true, offset: [0, 2], alpha: 90 }
+  accent_color: "#D9AA54"    # 少量重点词可用，不每句高亮
+
+# ------------------------------------------------------------
+# Footer 1080x280
+# ------------------------------------------------------------
+footer:
+  top_rule:                  # B-roll/Footer 交界分隔线（画在 footer_base 顶缘）
+    height: 2
+    color: "#F3E8D2"
+    alpha: 150
+
+  logo:
+    file: "assets/brand/logo_circle.png"
+    size: 128                # 直径 px（较初版缩小约 13.5%）
+    x: 64
+    y: 76                    # 垂直居中 (280-128)/2
+
+  divider:
+    x: 256
+    y_top: 62
+    y_bottom: 218
+    width: 2
+    color: "#F3E8D2"
+    alpha: 170
+
+  brand_name:
+    x: 292
+    y: 92
+    color: "#F3E8D2"
+    en:
+      text: "Alark"
+      font: serif_en_bold
+      size: 58
+      tracking: 2
+    cn:
+      text: "知新录"
+      font: serif_cn
+      size: 50
+      tracking: 4
+    en_cn_gap: 8
+
+  slogan:
+    text: "记录变化，也记录我们如何理解变化"
+    x: 296
+    y: 182
+    size: 25
+    tracking: 0              # 自然中文字距，不逐字拉宽
+    color: "#F3E8D2"
+    alpha: 150               # 比品牌名更弱
+    font: serif_cn_light
+
+  right_list:                # 右侧竖排
+    lines: ["TECH", "HUMAN", "SOCIETY", "A BETTER ME"]
+    align: right
+    x_right: 1016
+    y_top: 44
+    line_height: 32
+    size: 19
+    tracking: 4
+    color: "#F3E8D2"
+    alpha: 205
+    font: serif_en
+    dashes:                  # 上下各一条小横线装饰
+      width: 36
+      height: 2
+      gap: 12
+      color: "#F3E8D2"
+      alpha: 170
+
+  bottom_text:
+    text: "SMALL STEPS · A BRIGHTER TOMORROW"
+    align: center
+    y: 228                   # 较初版上移 12px
+    size: 20
+    tracking: 7
+    color: "#F3E8D2"
+    alpha: 185
+    font: serif_en
+
+# ------------------------------------------------------------
+# 输出
+# ------------------------------------------------------------
+output:
+  header: "assets/generated/header_base.png"
+  footer: "assets/generated/footer_base.png"
+  preview: "preview/frame_v1_preview.png"

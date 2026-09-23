@@ -1,0 +1,38 @@
+# Alark 品牌资产清单（Alark Frame v1.0）
+# 由 scripts/prepare_brand_assets.py 一次性准备，生成脚本只读取此处的规范文件名。
+
+version: "1.0"
+
+assets:
+  logo_circle:
+    file: logo_circle.png
+    source: Logo2.jpg
+    preparation: >
+      检测非黑像素包围盒定位圆环外缘，以短边为直径做正圆裁剪，
+      4x 超采样圆形蒙版抗锯齿，圆外区域转透明（RGBA PNG）。
+    usage: Footer 左侧圆形 A Logo（禁止重新生成、禁止拉伸）
+    size_px: [1247, 1247]
+
+  signature_chalk_white:
+    file: alark_signature_chalk_white.png
+    source: Alark_signature_chalkwhite.png
+    preparation: 原样复制并转为 RGBA PNG（白色手写签名，透明底）
+    usage: Header 右上品牌水印签名，默认透明度 25%~35%
+    size_px: [1774, 887]
+
+  signature_green:
+    file: Alark_signature.png
+    source: 原始资产
+    usage: 备用（深绿签名，Frame v1.0 不使用）
+
+  logo_no_ring:
+    file: Logo1.jpg
+    source: 原始资产
+    usage: 备用（无圆环纯 A，Frame v1.0 不使用）
+
+palette:
+  background_deep_green: "#0D3A2A"   # 主背景深墨绿（可同体系轻微深浅变化）
+  text_warm_cream: "#F3E8D2"         # 主文字暖米白
+  subtitle_warm_white: "#F7F5F0"     # 暖白字幕
+  accent_warm_gold: "#D9AA54"        # 强调暖金
+  outer_black: "#000000"             # 外层黑（9:16 黑边 / B-roll 占位）
