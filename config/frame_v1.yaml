@@ -158,12 +158,13 @@ header:
     color: "#F3E8D2"
     accent_color: "#D9AA54"  # 只允许 1 个强调词/短语
     font: sans_cn_heavy
-    size: 96
-    line_height: 124
-    x: 96
-    y_top: 130
+    size: 58                 # 起始字号；超出预留区时自动逐级缩小
+    min_size: 36             # 自动缩小的字号下限保护
+    line_height: 70
     align: left
-    reserved_area: { x: 96, y: 110, width: 700, height: 240 }
+    # 预留区：左侧金色竖线(x48-53)右侧 18px 起；右界 712 避开签名(x686+)
+    # 与右侧竖排(x782+)；底界 322 避开左下文案(y330+)
+    reserved_area: { x: 72, y: 112, width: 640, height: 210 }
 
 # ------------------------------------------------------------
 # B-roll 1080x608（第一阶段仅黑色占位）
