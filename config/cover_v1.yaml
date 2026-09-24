@@ -1,0 +1,141 @@
+# ============================================================
+# Alark Cover v1.0 · 统一封面系统配置
+# 与 Alark Frame v1.0 同一品牌语言：配色/字体/纹理均引用 frame_v1
+# （本文件只放封面版式参数；颜色、字体角色、等高线纹理参数
+#   直接读取 config/frame_v1.yaml 的 colors / fonts / texture 节）
+# ============================================================
+
+version: "1.0"
+
+# 标题输入优先级：项目 meta.yaml cover 字段 -> title.txt -> 命令行
+common:
+  masthead:
+    text: "ALARK · INSIGHTS FOR A BETTER TOMORROW"
+    size: 22
+    tracking: 7
+    color: "#F3E8D2"
+    alpha: 200
+    font: serif_en
+
+  signature:
+    file: "assets/brand/alark_signature_chalk_white.png"
+    opacity: 0.25               # 与 frame 一致的低透明水印感
+
+  aux_1:                        # 右侧偏上装饰英文
+    lines: ["IDEAS", "LIFE", "PEOPLE", "A BRIGHT TOMORROW"]
+    size: 20
+    tracking: 5
+    line_height: 36
+    color: "#F3E8D2"
+    alpha: 215
+    font: serif_en
+    dash: { width: 42, height: 2, gap: 14, color: "#F3E8D2", alpha: 180 }
+
+  aux_2:                        # 右下装饰英文
+    lines: ["TECH", "HUMAN", "SOCIETY", "A BETTER ME"]
+    size: 19
+    tracking: 4
+    line_height: 32
+    color: "#F3E8D2"
+    alpha: 205
+    font: serif_en
+    dashes: { width: 36, height: 2, gap: 12, color: "#F3E8D2", alpha: 170 }
+
+  title:                        # 主标题（排版逻辑复用 test_dynamic_title）
+    font: sans_cn_heavy
+    color: "#F3E8D2"
+    accent_color: "#D9AA54"     # 仅强调词使用
+    max_lines: 4
+    rule:                       # 标题左侧暖金细竖线
+      width: 6
+      color: "#D9AA54"
+      alpha: 235
+
+  brand:                        # 底部品牌区（同 frame Footer 气质）
+    logo_file: "assets/brand/logo_circle.png"
+    name_en: { text: "Alark", font: serif_en_bold, tracking: 2 }
+    name_cn: { text: "知新录", font: serif_cn, tracking: 4 }
+    name_color: "#F3E8D2"
+    en_cn_gap: 10
+    slogan:
+      text: "记录变化，也记录我们如何理解变化"
+      font: serif_cn_light
+      tracking: 1
+      color: "#F3E8D2"
+      alpha: 150
+
+# ------------------------------------------------------------
+# 竖版 1080x1440
+# ------------------------------------------------------------
+vertical:
+  width: 1080
+  height: 1440
+  masthead: { x: 64, y: 52 }
+  signature: { width: 300, margin_right: 56, margin_top: 64 }
+
+  aux_1: { x_right: 1016, y_top: 414 }   # 与标题第 2-3 行同带（该行段右界 <660），避让首行
+  aux_2: { x_right: 1016, y_top: 1000 }
+
+  title:
+    size: 88
+    min_size: 48
+    line_height: 112
+    rule: { x: 64, y_top: 292, y_bottom: 596 }
+    reserved_area: { x: 104, y: 270, width: 880, height: 340 }
+
+  # 中下部意象区：极简路径曲线（二次贝塞尔，坐标为画布比例）
+  # 两道低透明暖金曲线从下方两侧向中远方汇聚（端点错开，消失于"地平线"）
+  motif:
+    color: "#D9AA54"
+    lines:
+      - { p0: [0.27, 0.88], c: [0.40, 0.74], p1: [0.53, 0.60], width: 3, alpha: 70 }
+      - { p0: [0.68, 0.88], c: [0.63, 0.72], p1: [0.585, 0.60], width: 2, alpha: 35 }
+
+  brand:
+    logo: { size: 108, x: 64, y: 1232 }
+    name: { x: 206, baseline: 1312, en_size: 46, cn_size: 40 }
+    slogan: { x: 208, y: 1332, size: 22 }
+
+# ------------------------------------------------------------
+# 横版 1920x1080（横向重新布局，非拉伸）
+# ------------------------------------------------------------
+horizontal:
+  width: 1920
+  height: 1080
+  masthead: { x: 80, y: 56 }
+  signature: { width: 330, margin_right: 72, margin_top: 60 }
+
+  aux_1: { x_right: 1848, y_top: 200 }
+  aux_2: { x_right: 1848, y_top: 640 }
+
+  title:
+    size: 100
+    min_size: 52
+    line_height: 126
+    rule: { x: 80, y_top: 300, y_bottom: 660 }
+    reserved_area: { x: 120, y: 280, width: 1060, height: 380 }
+
+  motif:
+    color: "#D9AA54"
+    lines:
+      - { p0: [0.44, 0.94], c: [0.55, 0.78], p1: [0.68, 0.60], width: 3, alpha: 70 }
+      - { p0: [0.78, 0.94], c: [0.74, 0.76], p1: [0.715, 0.60], width: 2, alpha: 35 }
+
+  brand:
+    logo: { size: 96, x: 80, y: 908 }
+    name: { x: 206, baseline: 988, en_size: 44, cn_size: 38 }
+    slogan: { x: 208, y: 1006, size: 21 }
+
+# ------------------------------------------------------------
+# 对照图（竖版+横版并排）
+# ------------------------------------------------------------
+contact:
+  background: "#0A0A0A"
+  band_height: 54
+  gap: 40
+  margin: 40
+  vertical_height: 720         # 竖版缩放到此高度
+  horizontal_width: 960        # 横版缩放到此宽度
+  label_font: serif_en_bold
+  label_size: 28
+  label_color: "#F3E8D2"
