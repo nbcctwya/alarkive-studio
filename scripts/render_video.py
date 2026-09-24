@@ -179,6 +179,32 @@ def frame_test(project, t, out_path):
     print(f"[ok] {out_path}")
 
 
+def render_wrapped(project, limit_dur=None):
+    """wrapped_9_16：正式版上下补黑边成标准 9:16（参数读 config wrapped_9_16 节）。
+
+    从已编码的正式版重编码视频流（pad 滤镜）、音轨直接拷贝，不动帧合成管线。
+    """
+    meta, cfg, _timeline, _entries = load_project(project)
+    w = cfg["wrapped_9_16"]
+    src = project / "output/demo001_v1.mp4"
+    if not src.exists():
+        sys.exit("[error] wrapped 需要正式版先行：--mode final")
+    out_path = project / "output/demo001_wrapped.mp4"
+    color = "0x" + w["background"].lstrip("#")
+    vf = f"pad={w['width']}:{w['height']}:0:{w['padding_top']}:{color}"
+    ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
+    cmd = [ffmpeg, "-y", "-i", str(src), "-vf", vf,
+           "-c:v", "libx264", "-crf", "19", "-preset", "slow",
+           "-pix_fmt", "yuv420p", "-c:a", "copy", "-movflags", "+faststart"]
+    if limit_dur:
+        cmd += ["-t", f"{limit_dur:.3f}"]
+    cmd.append(str(out_path))
+    subprocess.run(cmd, check=True, capture_output=True)
+    print(f"[ok] {out_path}  {w['width']}x{w['height']}"
+          f"（上下黑边各 {w['padding_top']}px）")
+    return out_path
+
+
 def render(project, mode, limit_dur=None):
     meta, cfg, timeline, entries = load_project(project)
     scale = REGION_SCALE[mode]
@@ -256,7 +282,8 @@ def render(project, mode, limit_dur=None):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--project", default=str(ROOT / "projects" / "demo001"))
-    ap.add_argument("--mode", choices=["preview", "final"], default="preview")
+    ap.add_argument("--mode", choices=["preview", "final", "wrapped"],
+                    default="preview")
     ap.add_argument("--duration", type=float, default=None, help="限制渲染秒数")
     ap.add_argument("--frame-test", type=float, default=None, help="只渲染 t 秒处单帧")
     ap.add_argument("--frame-out", default=None)
@@ -266,6 +293,8 @@ def main() -> None:
     if args.frame_test is not None:
         out = args.frame_out or str(project / "output" / "frame_check.png")
         frame_test(project, args.frame_test, out)
+    elif args.mode == "wrapped":
+        render_wrapped(project, args.duration)
     else:
         render(project, args.mode, args.duration)
 

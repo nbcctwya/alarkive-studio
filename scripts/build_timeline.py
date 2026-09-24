@@ -131,7 +131,7 @@ def main() -> None:
         meta = yaml.safe_load(f)
     audio_dur = float(meta["voice"]["duration_sec"])
     srt = {e["id"]: e for e in parse_srt(project / meta["subtitle"]["file"])}
-    lib = json.loads((project / "selected_broll" / "library_index.json")
+    lib = json.loads((ROOT / "assets" / "broll_index.json")
                      .read_text(encoding="utf-8"))
 
     # 展开 shot list：起点 = 首条覆盖字幕的开始（或显式覆盖），终点 = 下一镜头起点

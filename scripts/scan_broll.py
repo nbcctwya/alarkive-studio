@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 """扫描 B-roll 素材库，生成素材索引（时长/fps/分辨率），结果缓存为 JSON。
 
-用法：
-  python scripts/scan_broll.py \
-      --library "B-roll/Landscape video" \
-      --output projects/demo001/selected_broll/library_index.json
+索引为全库共享（项目无关），默认输出 assets/broll_index.json：
+  python scripts/scan_broll.py                       # 增量扫描到默认共享位置
+  python scripts/scan_broll.py --output <其他路径>   # 自定义输出
 
 已存在的索引条目直接复用（增量扫描，新素材才探测）。
 """
@@ -17,6 +16,7 @@ import imageio_ffmpeg
 
 ROOT = Path(__file__).resolve().parent.parent
 VIDEO_EXT = {".mp4", ".mov", ".mkv", ".webm", ".avi"}
+DEFAULT_INDEX = ROOT / "assets" / "broll_index.json"
 
 
 def probe(path: Path) -> dict | None:
@@ -36,7 +36,7 @@ def probe(path: Path) -> dict | None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--library", default=str(ROOT / "B-roll" / "Landscape video"))
-    ap.add_argument("--output", required=True)
+    ap.add_argument("--output", default=str(DEFAULT_INDEX))
     args = ap.parse_args()
 
     lib = Path(args.library)
