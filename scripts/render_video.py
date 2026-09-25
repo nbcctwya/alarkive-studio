@@ -186,8 +186,11 @@ def render_wrapped(project, limit_dur=None):
     """
     meta, cfg, _timeline, _entries = load_project(project)
     w = cfg["wrapped_9_16"]
-    src = project / "output/demo001_v1.mp4"
-    if not src.exists():
+    # 正式版可能已被 produce.py 归位为 <id>_v1.mp4，两种命名都找
+    cands = [project / "output" / f"{project.name}_v1.mp4",
+             project / "output" / "demo001_v1.mp4"]
+    src = next((p for p in cands if p.exists()), None)
+    if src is None:
         sys.exit("[error] wrapped 需要正式版先行：--mode final")
     out_path = project / "output/demo001_wrapped.mp4"
     color = "0x" + w["background"].lstrip("#")
