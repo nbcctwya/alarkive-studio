@@ -126,7 +126,7 @@ def main() -> None:
         meta = yaml.safe_load(f)
     vc = meta["voice"]
 
-    lines = [ln.strip() for ln in (project / meta["script"]["file"])
+    lines = [ln.strip().replace("**", "") for ln in (project / meta["script"]["file"])
              .read_text(encoding="utf-8").splitlines() if ln.strip()]
     text = "\n".join(lines)
     print(f"[info] 非空段落 {len(lines)} 行，共 {len(text)} 字符")

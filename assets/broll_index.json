@@ -1494,5 +1494,781 @@
     "height": 1080,
     "category": "Abstract/Time",
     "filename": "coverr-timelapse-of-grand-central-station-7681-1080p.mp4"
+  },
+  "Business/Company/12283294-hd_1920_1080_25fps.mp4": {
+    "duration": 4.61,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Business/Company",
+    "filename": "12283294-hd_1920_1080_25fps.mp4"
+  },
+  "Business/Company/3201747-hd_1920_1080_25fps.mp4": {
+    "duration": 12.2,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Business/Company",
+    "filename": "3201747-hd_1920_1080_25fps.mp4"
+  },
+  "Business/Company/6325848-hd_1920_1080_25fps.mp4": {
+    "duration": 16.09,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Business/Company",
+    "filename": "6325848-hd_1920_1080_25fps.mp4"
+  },
+  "Business/Company/6339906-hd_1920_1080_30fps.mp4": {
+    "duration": 20.52,
+    "fps": 29.97,
+    "width": 1920,
+    "height": 1080,
+    "category": "Business/Company",
+    "filename": "6339906-hd_1920_1080_30fps.mp4"
+  },
+  "Business/Company/6562014-hd_1920_1080_25fps.mp4": {
+    "duration": 9.88,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Business/Company",
+    "filename": "6562014-hd_1920_1080_25fps.mp4"
+  },
+  "Business/Company/6803584-hd_2048_1080_25fps.mp4": {
+    "duration": 37.44,
+    "fps": 25.0,
+    "width": 2048,
+    "height": 1080,
+    "category": "Business/Company",
+    "filename": "6803584-hd_2048_1080_25fps.mp4"
+  },
+  "Business/Company/6804659-hd_2048_1080_25fps.mp4": {
+    "duration": 16.76,
+    "fps": 25.0,
+    "width": 2048,
+    "height": 1080,
+    "category": "Business/Company",
+    "filename": "6804659-hd_2048_1080_25fps.mp4"
+  },
+  "Business/Company/7252809-hd_1920_1080_25fps.mp4": {
+    "duration": 13.08,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Business/Company",
+    "filename": "7252809-hd_1920_1080_25fps.mp4"
+  },
+  "Business/Company/7252818-hd_1920_1080_25fps.mp4": {
+    "duration": 13.6,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Business/Company",
+    "filename": "7252818-hd_1920_1080_25fps.mp4"
+  },
+  "Business/Company/7253096-hd_1920_1080_25fps.mp4": {
+    "duration": 9.68,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Business/Company",
+    "filename": "7253096-hd_1920_1080_25fps.mp4"
+  },
+  "Business/Company/coverr-colleagues-come-to-the-office-5170-1080p.mp4": {
+    "duration": 12.51,
+    "fps": 23.98,
+    "width": 1920,
+    "height": 1080,
+    "category": "Business/Company",
+    "filename": "coverr-colleagues-come-to-the-office-5170-1080p.mp4"
+  },
+  "Business/Company/coverr-putting-wood-on-a-machine-8859-1080p.mp4": {
+    "duration": 13.85,
+    "fps": 29.97,
+    "width": 1920,
+    "height": 1080,
+    "category": "Business/Company",
+    "filename": "coverr-putting-wood-on-a-machine-8859-1080p.mp4"
+  },
+  "Nature/Ocean/1414758-hd_1920_1080_25fps.mp4": {
+    "duration": 21.61,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Nature/Ocean",
+    "filename": "1414758-hd_1920_1080_25fps.mp4"
+  },
+  "Nature/Ocean/15625685_1920_1080_60fps.mp4": {
+    "duration": 11.95,
+    "fps": 59.94,
+    "width": 1920,
+    "height": 1080,
+    "category": "Nature/Ocean",
+    "filename": "15625685_1920_1080_60fps.mp4"
+  },
+  "Nature/Ocean/2873484-hd_1920_1080_25fps.mp4": {
+    "duration": 7.4,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Nature/Ocean",
+    "filename": "2873484-hd_1920_1080_25fps.mp4"
+  },
+  "Nature/Ocean/4328577-hd_1920_1080_30fps.mp4": {
+    "duration": 17.26,
+    "fps": 29.97,
+    "width": 1920,
+    "height": 1080,
+    "category": "Nature/Ocean",
+    "filename": "4328577-hd_1920_1080_30fps.mp4"
+  },
+  "Nature/Ocean/5982833-hd_1920_1080_24fps.mp4": {
+    "duration": 8.28,
+    "fps": 23.98,
+    "width": 1920,
+    "height": 1080,
+    "category": "Nature/Ocean",
+    "filename": "5982833-hd_1920_1080_24fps.mp4"
+  },
+  "Nature/Ocean/6624689-hd_1920_1080_25fps.mp4": {
+    "duration": 35.04,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Nature/Ocean",
+    "filename": "6624689-hd_1920_1080_25fps.mp4"
+  },
+  "Nature/Ocean/6666283-uhd_2732_1318_30fps.mp4": {
+    "duration": 11.8,
+    "fps": 29.97,
+    "width": 2732,
+    "height": 1318,
+    "category": "Nature/Ocean",
+    "filename": "6666283-uhd_2732_1318_30fps.mp4"
+  },
+  "Nature/Ocean/6666455-uhd_2732_1318_30fps.mp4": {
+    "duration": 9.96,
+    "fps": 29.97,
+    "width": 2732,
+    "height": 1318,
+    "category": "Nature/Ocean",
+    "filename": "6666455-uhd_2732_1318_30fps.mp4"
+  },
+  "Nature/Ocean/7047319-uhd_2732_1318_30fps.mp4": {
+    "duration": 15.49,
+    "fps": 29.97,
+    "width": 2732,
+    "height": 1318,
+    "category": "Nature/Ocean",
+    "filename": "7047319-uhd_2732_1318_30fps.mp4"
+  },
+  "Nature/Ocean/8303107-hd_2048_1080_25fps.mp4": {
+    "duration": 19.72,
+    "fps": 25.0,
+    "width": 2048,
+    "height": 1080,
+    "category": "Nature/Ocean",
+    "filename": "8303107-hd_2048_1080_25fps.mp4"
+  },
+  "Nature/Ocean/8336026-hd_2048_1080_25fps.mp4": {
+    "duration": 14.12,
+    "fps": 25.0,
+    "width": 2048,
+    "height": 1080,
+    "category": "Nature/Ocean",
+    "filename": "8336026-hd_2048_1080_25fps.mp4"
+  },
+  "Nature/Ocean/coverr-a-picnic-near-the-ocean-6972-1080p.mp4": {
+    "duration": 11.88,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Nature/Ocean",
+    "filename": "coverr-a-picnic-near-the-ocean-6972-1080p.mp4"
+  },
+  "Nature/Ocean/coverr-walking-on-the-sidewalk-8061-1080p.mp4": {
+    "duration": 24.67,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Nature/Ocean",
+    "filename": "coverr-walking-on-the-sidewalk-8061-1080p.mp4"
+  },
+  "Things/Flower/12745682-hd_1920_1080_24fps.mp4": {
+    "duration": 5.38,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "12745682-hd_1920_1080_24fps.mp4"
+  },
+  "Things/Flower/13404672_1920_1080_30fps.mp4": {
+    "duration": 10.01,
+    "fps": 29.97,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "13404672_1920_1080_30fps.mp4"
+  },
+  "Things/Flower/13600108_1920_1080_25fps.mp4": {
+    "duration": 18.36,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "13600108_1920_1080_25fps.mp4"
+  },
+  "Things/Flower/13907999_1920_1080_60fps.mp4": {
+    "duration": 14.25,
+    "fps": 59.94,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "13907999_1920_1080_60fps.mp4"
+  },
+  "Things/Flower/14901399_1920_1080_25fps.mp4": {
+    "duration": 5.08,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "14901399_1920_1080_25fps.mp4"
+  },
+  "Things/Flower/16105711_1920_1080_25fps.mp4": {
+    "duration": 8.0,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "16105711_1920_1080_25fps.mp4"
+  },
+  "Things/Flower/16316121_1920_1080_25fps.mp4": {
+    "duration": 7.08,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "16316121_1920_1080_25fps.mp4"
+  },
+  "Things/Flower/20686403-hd_1920_1080_24fps.mp4": {
+    "duration": 6.72,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "20686403-hd_1920_1080_24fps.mp4"
+  },
+  "Things/Flower/2895664-hd_1920_1080_24fps.mp4": {
+    "duration": 82.54,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "2895664-hd_1920_1080_24fps.mp4"
+  },
+  "Things/Flower/4064616-hd_1920_1080_25fps.mp4": {
+    "duration": 27.05,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "4064616-hd_1920_1080_25fps.mp4"
+  },
+  "Things/Flower/4203953-hd_1920_1080_24fps.mp4": {
+    "duration": 27.5,
+    "fps": 23.98,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "4203953-hd_1920_1080_24fps.mp4"
+  },
+  "Things/Flower/5005943-hd_1280_720_30fps.mp4": {
+    "duration": 23.49,
+    "fps": 29.97,
+    "width": 1280,
+    "height": 720,
+    "category": "Things/Flower",
+    "filename": "5005943-hd_1280_720_30fps.mp4"
+  },
+  "Things/Flower/5235136-hd_1920_1080_25fps.mp4": {
+    "duration": 20.56,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "5235136-hd_1920_1080_25fps.mp4"
+  },
+  "Things/Flower/6133066-hd_1920_1080_30fps.mp4": {
+    "duration": 20.03,
+    "fps": 29.97,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "6133066-hd_1920_1080_30fps.mp4"
+  },
+  "Things/Flower/coverr-bee-on-a-flower-7998-1080p.mp4": {
+    "duration": 15.08,
+    "fps": 29.97,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "coverr-bee-on-a-flower-7998-1080p.mp4"
+  },
+  "Things/Flower/coverr-man-holding-a-red-flower-8060-1080p.mp4": {
+    "duration": 12.5,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "coverr-man-holding-a-red-flower-8060-1080p.mp4"
+  },
+  "Things/Flower/coverr-purple-flowers-in-the-grass-6561-1080p.mp4": {
+    "duration": 12.55,
+    "fps": 23.98,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "coverr-purple-flowers-in-the-grass-6561-1080p.mp4"
+  },
+  "Things/Flower/coverr-rain-on-a-red-flower-6463-1080p.mp4": {
+    "duration": 8.2,
+    "fps": 50.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "coverr-rain-on-a-red-flower-6463-1080p.mp4"
+  },
+  "Things/Flower/coverr-writing-in-a-notebook-next-to-flowers-65-1080p.mp4": {
+    "duration": 17.16,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Things/Flower",
+    "filename": "coverr-writing-in-a-notebook-next-to-flowers-65-1080p.mp4"
+  },
+  "Art/Music/10222213-hd_2048_1080_25fps.mp4": {
+    "duration": 50.72,
+    "fps": 25.0,
+    "width": 2048,
+    "height": 1080,
+    "category": "Art/Music",
+    "filename": "10222213-hd_2048_1080_25fps.mp4"
+  },
+  "Art/Music/13527139_1920_1080_25fps.mp4": {
+    "duration": 8.08,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Music",
+    "filename": "13527139_1920_1080_25fps.mp4"
+  },
+  "Art/Music/19057431-hd_1920_1080_25fps.mp4": {
+    "duration": 9.41,
+    "fps": 25.0,
+    "width": 1280,
+    "height": 720,
+    "category": "Art/Music",
+    "filename": "19057431-hd_1920_1080_25fps.mp4"
+  },
+  "Art/Music/2306150-hd_1920_1080_30fps.mp4": {
+    "duration": 25.34,
+    "fps": 29.97,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Music",
+    "filename": "2306150-hd_1920_1080_30fps.mp4"
+  },
+  "Art/Music/6494232-hd_2048_1080_25fps.mp4": {
+    "duration": 27.64,
+    "fps": 25.0,
+    "width": 2048,
+    "height": 1080,
+    "category": "Art/Music",
+    "filename": "6494232-hd_2048_1080_25fps.mp4"
+  },
+  "Art/Music/6722773-hd_2048_1080_25fps.mp4": {
+    "duration": 21.2,
+    "fps": 25.0,
+    "width": 2048,
+    "height": 1080,
+    "category": "Art/Music",
+    "filename": "6722773-hd_2048_1080_25fps.mp4"
+  },
+  "Art/Music/7352118-uhd_2560_1080_25fps.mp4": {
+    "duration": 25.2,
+    "fps": 25.0,
+    "width": 2560,
+    "height": 1080,
+    "category": "Art/Music",
+    "filename": "7352118-uhd_2560_1080_25fps.mp4"
+  },
+  "Art/Music/8103463-hd_2048_1080_25fps.mp4": {
+    "duration": 17.92,
+    "fps": 25.0,
+    "width": 2048,
+    "height": 1080,
+    "category": "Art/Music",
+    "filename": "8103463-hd_2048_1080_25fps.mp4"
+  },
+  "Art/Music/8161409-hd_1920_1080_25fps.mp4": {
+    "duration": 5.44,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Music",
+    "filename": "8161409-hd_1920_1080_25fps.mp4"
+  },
+  "Art/Music/8568656-hd_2048_1080_25fps.mp4": {
+    "duration": 31.4,
+    "fps": 25.0,
+    "width": 2048,
+    "height": 1080,
+    "category": "Art/Music",
+    "filename": "8568656-hd_2048_1080_25fps.mp4"
+  },
+  "Art/Sculpture/10370518-hd_1920_1080_24fps.mp4": {
+    "duration": 18.67,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "10370518-hd_1920_1080_24fps.mp4"
+  },
+  "Art/Sculpture/12045537_1920_1080_30fps.mp4": {
+    "duration": 10.2,
+    "fps": 30.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "12045537_1920_1080_30fps.mp4"
+  },
+  "Art/Sculpture/12046450_1920_1080_25fps.mp4": {
+    "duration": 10.92,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "12046450_1920_1080_25fps.mp4"
+  },
+  "Art/Sculpture/13437709_1920_1080_25fps.mp4": {
+    "duration": 27.04,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "13437709_1920_1080_25fps.mp4"
+  },
+  "Art/Sculpture/13438686_1920_1080_30fps.mp4": {
+    "duration": 8.0,
+    "fps": 30.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "13438686_1920_1080_30fps.mp4"
+  },
+  "Art/Sculpture/14743464_1920_1080_30fps.mp4": {
+    "duration": 5.8,
+    "fps": 30.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "14743464_1920_1080_30fps.mp4"
+  },
+  "Art/Sculpture/15199954-hd_1920_1080_25fps.mp4": {
+    "duration": 11.11,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "15199954-hd_1920_1080_25fps.mp4"
+  },
+  "Art/Sculpture/15212893-hd_1920_1080_25fps.mp4": {
+    "duration": 11.48,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "15212893-hd_1920_1080_25fps.mp4"
+  },
+  "Art/Sculpture/16717305_1920_1080_25fps.mp4": {
+    "duration": 12.48,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "16717305_1920_1080_25fps.mp4"
+  },
+  "Art/Sculpture/20606541-hd_1920_1080_24fps.mp4": {
+    "duration": 12.03,
+    "fps": 23.98,
+    "width": 1280,
+    "height": 720,
+    "category": "Art/Sculpture",
+    "filename": "20606541-hd_1920_1080_24fps.mp4"
+  },
+  "Art/Sculpture/3051373-hd_1920_1080_24fps.mp4": {
+    "duration": 32.04,
+    "fps": 23.98,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "3051373-hd_1920_1080_24fps.mp4"
+  },
+  "Art/Sculpture/5814727-hd_1920_1080_25fps.mp4": {
+    "duration": 3.56,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "5814727-hd_1920_1080_25fps.mp4"
+  },
+  "Art/Sculpture/6711444-hd_1920_1080_25fps.mp4": {
+    "duration": 16.48,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "6711444-hd_1920_1080_25fps.mp4"
+  },
+  "Art/Sculpture/7316620-hd_1920_1080_25fps.mp4": {
+    "duration": 16.8,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "7316620-hd_1920_1080_25fps.mp4"
+  },
+  "Art/Sculpture/8148654-hd_1920_1080_30fps.mp4": {
+    "duration": 12.35,
+    "fps": 29.97,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Sculpture",
+    "filename": "8148654-hd_1920_1080_30fps.mp4"
+  },
+  "Art/Sculpture/9028971-hd_1920_1080_30fps.mp4": {
+    "duration": 25.83,
+    "fps": 29.97,
+    "width": 1280,
+    "height": 720,
+    "category": "Art/Sculpture",
+    "filename": "9028971-hd_1920_1080_30fps.mp4"
+  },
+  "People/Physical training/12118260_1920_1080_30fps.mp4": {
+    "duration": 10.8,
+    "fps": 30.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "12118260_1920_1080_30fps.mp4"
+  },
+  "People/Physical training/18573535-hd_1920_1080_25fps.mp4": {
+    "duration": 5.85,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "18573535-hd_1920_1080_25fps.mp4"
+  },
+  "People/Physical training/4804784-hd_1920_1080_25fps.mp4": {
+    "duration": 11.4,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "4804784-hd_1920_1080_25fps.mp4"
+  },
+  "People/Physical training/4859447-hd_1920_1080_25fps.mp4": {
+    "duration": 17.88,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "4859447-hd_1920_1080_25fps.mp4"
+  },
+  "People/Physical training/4859743-hd_1920_1080_25fps.mp4": {
+    "duration": 3.6,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "4859743-hd_1920_1080_25fps.mp4"
+  },
+  "People/Physical training/4859756-hd_1920_1080_25fps.mp4": {
+    "duration": 11.44,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "4859756-hd_1920_1080_25fps.mp4"
+  },
+  "People/Physical training/4859764-hd_1920_1080_25fps.mp4": {
+    "duration": 26.36,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "4859764-hd_1920_1080_25fps.mp4"
+  },
+  "People/Physical training/4867626-hd_1920_1080_25fps.mp4": {
+    "duration": 8.96,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "4867626-hd_1920_1080_25fps.mp4"
+  },
+  "People/Physical training/5046450-hd_1920_1080_30fps.mp4": {
+    "duration": 2.3,
+    "fps": 29.97,
+    "width": 1920,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "5046450-hd_1920_1080_30fps.mp4"
+  },
+  "People/Physical training/6115673-hd_1920_1080_25fps.mp4": {
+    "duration": 6.93,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "6115673-hd_1920_1080_25fps.mp4"
+  },
+  "People/Physical training/6116178-hd_1920_1080_25fps.mp4": {
+    "duration": 4.68,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "6116178-hd_1920_1080_25fps.mp4"
+  },
+  "People/Physical training/6296583-uhd_2560_1080_25fps.mp4": {
+    "duration": 12.24,
+    "fps": 25.0,
+    "width": 2560,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "6296583-uhd_2560_1080_25fps.mp4"
+  },
+  "People/Physical training/7187095-hd_1920_1080_24fps.mp4": {
+    "duration": 14.14,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "7187095-hd_1920_1080_24fps.mp4"
+  },
+  "People/Physical training/7676730-hd_2048_1080_25fps.mp4": {
+    "duration": 20.6,
+    "fps": 25.0,
+    "width": 2048,
+    "height": 1080,
+    "category": "People/Physical training",
+    "filename": "7676730-hd_2048_1080_25fps.mp4"
+  },
+  "People/Physical training/8520072-uhd_2732_1122_25fps.mp4": {
+    "duration": 15.24,
+    "fps": 25.0,
+    "width": 2732,
+    "height": 1122,
+    "category": "People/Physical training",
+    "filename": "8520072-uhd_2732_1122_25fps.mp4"
+  },
+  "Art/Create/10474553-hd_1920_1080_30fps.mp4": {
+    "duration": 13.73,
+    "fps": 30.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Create",
+    "filename": "10474553-hd_1920_1080_30fps.mp4"
+  },
+  "Art/Create/13815639_1920_1080_25fps.mp4": {
+    "duration": 17.96,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Create",
+    "filename": "13815639_1920_1080_25fps.mp4"
+  },
+  "Art/Create/3246281-hd_1920_1080_25fps.mp4": {
+    "duration": 17.0,
+    "fps": 25.0,
+    "width": 1280,
+    "height": 720,
+    "category": "Art/Create",
+    "filename": "3246281-hd_1920_1080_25fps.mp4"
+  },
+  "Art/Create/6607345-hd_1920_1080_25fps.mp4": {
+    "duration": 14.08,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Create",
+    "filename": "6607345-hd_1920_1080_25fps.mp4"
+  },
+  "Art/Create/6911851-hd_1920_1080_25fps.mp4": {
+    "duration": 7.92,
+    "fps": 25.0,
+    "width": 1280,
+    "height": 720,
+    "category": "Art/Create",
+    "filename": "6911851-hd_1920_1080_25fps.mp4"
+  },
+  "Art/Create/7230987-hd_1920_1080_25fps.mp4": {
+    "duration": 12.84,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Art/Create",
+    "filename": "7230987-hd_1920_1080_25fps.mp4"
+  },
+  "Technology/Lab/13822277_1920_1080_25fps.mp4": {
+    "duration": 9.96,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Technology/Lab",
+    "filename": "13822277_1920_1080_25fps.mp4"
+  },
+  "Technology/Lab/3192026-hd_1920_1080_25fps.mp4": {
+    "duration": 10.92,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Technology/Lab",
+    "filename": "3192026-hd_1920_1080_25fps.mp4"
+  },
+  "Technology/Lab/8381327-hd_1920_1080_25fps.mp4": {
+    "duration": 12.2,
+    "fps": 25.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Technology/Lab",
+    "filename": "8381327-hd_1920_1080_25fps.mp4"
+  },
+  "Technology/Lab/8852613-hd_1920_1080_30fps.mp4": {
+    "duration": 15.02,
+    "fps": 30.0,
+    "width": 1920,
+    "height": 1080,
+    "category": "Technology/Lab",
+    "filename": "8852613-hd_1920_1080_30fps.mp4"
+  },
+  "Technology/Lab/9574023-hd_2048_1080_25fps.mp4": {
+    "duration": 21.04,
+    "fps": 25.0,
+    "width": 2048,
+    "height": 1080,
+    "category": "Technology/Lab",
+    "filename": "9574023-hd_2048_1080_25fps.mp4"
+  },
+  "Technology/Lab/9574137-hd_2048_1080_25fps.mp4": {
+    "duration": 10.12,
+    "fps": 25.0,
+    "width": 2048,
+    "height": 1080,
+    "category": "Technology/Lab",
+    "filename": "9574137-hd_2048_1080_25fps.mp4"
   }
 }
