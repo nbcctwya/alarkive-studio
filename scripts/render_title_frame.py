@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import generate_frame as gf  # noqa: E402
 from test_dynamic_title import layout_title  # noqa: E402
+from language_profiles import apply_profile, project_language  # noqa: E402
 
 
 def render_title_frame(project: Path, config: Path) -> Path:
@@ -25,6 +26,8 @@ def render_title_frame(project: Path, config: Path) -> Path:
         cfg = yaml.safe_load(f)
     with open(project / "meta.yaml", encoding="utf-8") as f:
         meta = yaml.safe_load(f)
+    language = project_language(meta)
+    cfg = apply_profile(cfg, language, "frame")
 
     hints = (project / meta["title"]["file"]).read_text(encoding="utf-8") \
         .splitlines()
@@ -36,8 +39,13 @@ def render_title_frame(project: Path, config: Path) -> Path:
     ra = td["reserved_area"]
     cv = cfg["canvas"]
 
-    header = Image.open(ROOT / cfg["output"]["header"]).convert("RGBA")
-    footer = Image.open(ROOT / cfg["output"]["footer"]).convert("RGBA")
+    if language == "en":
+        # Generate the English brand footer in memory, leaving frozen assets intact.
+        header = gf.render_header(cfg, fonts)
+        footer = gf.render_footer(cfg, fonts)
+    else:
+        header = Image.open(ROOT / cfg["output"]["header"]).convert("RGBA")
+        footer = Image.open(ROOT / cfg["output"]["footer"]).convert("RGBA")
     canvas = Image.new("RGBA", (cv["width"], cv["height"]),
                        gf.hex_rgba(cfg["broll"]["placeholder_color"]))
     canvas.paste(header, (0, 0))
@@ -52,6 +60,8 @@ def render_title_frame(project: Path, config: Path) -> Path:
             break
         size -= 2
     if overflow:
+        if language == "en":
+            raise ValueError("English title does not fit; shorten the title or its line hints.")
         print(f"[warn] 已达字号下限 {td['min_size']} 仍超出预留区", file=sys.stderr)
 
     font, stroke = fonts.get(td["font"], size)

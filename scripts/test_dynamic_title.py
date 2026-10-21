@@ -28,6 +28,7 @@ from PIL import Image, ImageDraw
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import generate_frame as gf  # noqa: E402  复用 hex_rgba / FontBook
+from text_layout import word_wrap  # noqa: E402
 
 DEFAULT_TITLE = ["真正拉开人与人差距的", "从来不是努力", "而是选择"]
 DEFAULT_HIGHLIGHT = ["选择"]
@@ -73,8 +74,12 @@ def layout_title(draw, fonts, td, hints, highlights, size):
     font, stroke = fonts.get(td["font"], size)
     rows = []
     for hint in hints:
-        rows.extend(greedy_wrap(hint, mark_highlights(hint, highlights),
-                                draw, font, ra["width"]))
+        flags = mark_highlights(hint, highlights)
+        if td.get("wrap") == "word":
+            rows.extend(word_wrap(hint, draw, font, ra["width"], flags,
+                                  per_character=True))
+        else:
+            rows.extend(greedy_wrap(hint, flags, draw, font, ra["width"]))
     total_h = line_height * len(rows)
     overflow = (len(rows) > td["max_lines"] or total_h > ra["height"]
                 or any(w > ra["width"] for _, _, w in rows))

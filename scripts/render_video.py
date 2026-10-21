@@ -30,6 +30,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import generate_frame as gf  # noqa: E402
 from build_timeline import parse_srt  # noqa: E402
+from language_profiles import apply_profile, project_language  # noqa: E402
+from text_layout import word_wrap  # noqa: E402
 
 FPS = 30
 
@@ -45,6 +47,7 @@ REGION_SCALE = {"preview": 0.5, "final": 1.0}
 SUB_MIN_SIZE_FINAL = 32          # 字幕自动缩小下限（对应 final；preview 减半）
 SUB_BOTTOM_UP_FINAL = 70         # 字幕底边距 B-roll 底（60~85 规范取中）
 SUB_MARGIN_X_FINAL = 60          # 字幕左右边距
+CLOSING_PUNCTUATION = "，。！？；：、,.!?;:）)]}〉》」』】〕〗〙〛’”"
 
 
 def wrap_cjk(draw, text, font, max_w):
@@ -67,6 +70,7 @@ def build_subtitle_overlays(entries, fonts, cfg, mode, scale, broll_h):
     m = MODES[mode]
     W = m["W"]
     sub = cfg["subtitle"]
+    word_mode = sub.get("wrap") == "word"
     max_w = W - 2 * round(SUB_MARGIN_X_FINAL * scale)
     bottom_up = round(SUB_BOTTOM_UP_FINAL * scale)
     size0 = m["sub_size"]
@@ -79,11 +83,22 @@ def build_subtitle_overlays(entries, fonts, cfg, mode, scale, broll_h):
     for e in entries:
         size = size0
         while True:
-            font, stroke_w = fonts.get("sans_cn_heavy", size)
-            lines = wrap_cjk(probe, e["text"], font, max_w)
-            if len(lines) <= 2 or size <= size_min:
+            font, stroke_w = fonts.get(sub.get("font", "sans_cn_heavy"), size)
+            if word_mode:
+                lines = [row[0] for row in word_wrap(
+                    e["text"], probe, font, max_w, balance_two_lines=True)]
+            else:
+                lines = wrap_cjk(probe, e["text"], font, max_w)
+            # 长句恰好多出一个标点时，略缩字号，避免句号独占一行或标点落在行首。
+            bad_break = any(ln.startswith(tuple(CLOSING_PUNCTUATION)) for ln in lines[1:])
+            too_wide = word_mode and any(
+                probe.textlength(ln, font=font) > max_w for ln in lines)
+            if (len(lines) <= 2 and not bad_break and not too_wide) or size <= size_min:
                 break
             size -= 2
+        if word_mode and (len(lines) > 2 or too_wide or bad_break):
+            raise ValueError(f"English subtitle does not fit in two lines: {e['text']!r}. "
+                             "Split this caption into shorter phrases before generating speech.")
         lines = lines[:2]
         layer = Image.new("RGBA", (W, broll_h), (0, 0, 0, 0))
         d = ImageDraw.Draw(layer)
@@ -144,6 +159,7 @@ def load_project(project):
         meta = yaml.safe_load(f)
     with open(ROOT / "config" / "frame_v1.yaml", encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
+    cfg = apply_profile(cfg, project_language(meta), "frame")
     timeline = yaml.safe_load((project / "timeline.yaml").read_text("utf-8"))
     entries = parse_srt(project / meta["subtitle"]["file"])
     return meta, cfg, timeline, entries

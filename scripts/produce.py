@@ -18,13 +18,17 @@ assets/broll_index.json（全库共享索引）编写；本流水线负责校验
 """
 import argparse
 import json
+import math
 import subprocess
 import sys
 import time
+import wave
 from datetime import date
 from pathlib import Path
 
 import yaml
+
+from language_profiles import LANGUAGES, load_profile, project_language
 
 ROOT = Path(__file__).resolve().parent.parent
 STEPS = ["init", "voice", "title", "timeline", "shotlist", "render", "cover"]
@@ -32,7 +36,7 @@ EXIT_NO_TIMELINE = 2
 
 
 def run(script: str, *script_args: str) -> None:
-    cmd = [sys.executable, "-u", str(ROOT / "scripts" / script), *script_args]
+    cmd = [sys.executable, "-X", "utf8", "-u", str(ROOT / "scripts" / script), *script_args]
     r = subprocess.run(cmd, cwd=ROOT)
     if r.returncode != 0:
         sys.exit(f"[error] {script} {' '.join(script_args)} 失败，退出码 {r.returncode}")
@@ -44,6 +48,12 @@ class Pipeline:
         self.project = ROOT / "projects" / self.pid
         self.args = args
         self.meta_path = self.project / "meta.yaml"
+        requested = getattr(args, "language", None)
+        if self.meta_path.exists() and requested is not None:
+            existing = project_language(self.meta())
+            if requested != existing:
+                sys.exit(f"[error] 已有项目语言为 {existing}，不能用 --language {requested} "
+                         "覆盖；请为另一语言使用独立的 --id")
 
     # ---------------- 工具 ----------------
     def meta(self) -> dict:
@@ -75,8 +85,13 @@ class Pipeline:
         highlight = list(a.highlight or [])
         n_par = sum(1 for ln in (self.project / "script.txt")
                     .read_text(encoding="utf-8").splitlines() if ln.strip())
+        # Resuming a project reads its own language; old projects default to zh.
+        language = (getattr(a, "language", None)
+                    or (project_language(self.meta()) if self.meta_path.exists() else "zh"))
+        voice_defaults = load_profile(language)["voice"]
         meta = {
             "id": self.pid,
+            "language": language,
             "frame_version": "v1.0",
             "created": str(date.today()),
             "title": {"file": "title.txt", "lines": list(a.title_lines),
@@ -85,9 +100,8 @@ class Pipeline:
             "cover": {"highlight": highlight},
             "script": {"file": "script.txt", "paragraph_count": n_par},
             "voice": {"engine": "edge-tts",
-                      "voice_primary": "zh-CN-YunjianNeural",
-                      "voice_fallback": "zh-CN-YunxiNeural",
-                      "voice_used": None, "rate": "-4%",
+                      **voice_defaults,
+                      "voice_used": None,
                       "output_mp3": f"voice/{self.pid}.mp3",
                       "output_wav": f"voice/{self.pid}.wav",
                       "duration_sec": None},
@@ -105,6 +119,13 @@ class Pipeline:
         arts = [self.project / vc["output_mp3"], self.project / vc["output_wav"],
                 self.project / m["subtitle"]["file"]]
         if all(p.exists() for p in arts) and not self.args.force:
+            if vc.get("duration_sec") is None:
+                with wave.open(str(arts[1]), "rb") as wf:
+                    vc["duration_sec"] = round(wf.getnframes() / wf.getframerate(), 2)
+                self.meta_path.write_text(
+                    yaml.safe_dump(m, allow_unicode=True, sort_keys=False),
+                    encoding="utf-8")
+                print("  [ok] 从已有 wav 补齐配音时长", flush=True)
             self.skip("配音 mp3/wav 与字幕 srt（TTS 时间戳不可复现，不重跑）")
             return
         run("make_voice.py", "--project", str(self.project))
@@ -140,20 +161,54 @@ class Pipeline:
         m = self.meta()
         audio = float(m["voice"]["duration_sec"] or 0)
         data = yaml.safe_load(tl.read_text(encoding="utf-8"))
-        shots = data.get("shots") or []
-        if not shots:
-            sys.exit("[error] timeline.yaml 无 shots")
+        shots = data.get("shots") if isinstance(data, dict) else None
+        if not isinstance(shots, list) or not shots:
+            sys.exit("[error] timeline.yaml 的 shots 必须为非空列表")
         index = json.loads((ROOT / "assets" / "broll_index.json")
                            .read_text(encoding="utf-8"))
+        # 兼容旧项目中使用小写目录名的素材路径。
+        index = {key.casefold(): value for key, value in index.items()}
+        required = ("seq", "start", "end", "duration", "material", "in", "out",
+                    "category", "srt_entries", "reason")
+        time_fields = ("start", "end", "duration", "in", "out")
         prev_end, errors = 0.0, []
         for i, s in enumerate(shots, 1):
-            for k in ("seq", "start", "end", "material", "in", "out", "category"):
-                if k not in s:
-                    errors.append(f"镜头{i} 缺字段 {k}")
+            if not isinstance(s, dict):
+                errors.append(f"镜头{i} 必须为字段映射")
+                continue
+            missing = [k for k in required if k not in s]
+            if missing:
+                errors.append(f"镜头{i} 缺字段 {', '.join(missing)}")
+                continue
+            invalid = [k for k in time_fields
+                       if type(s[k]) not in (int, float) or not math.isfinite(s[k])]
+            if invalid:
+                errors.append(f"镜头{i} 时间字段必须为有限数字: {', '.join(invalid)}")
+                continue
+            if type(s["seq"]) is not int or s["seq"] != i:
+                errors.append(f"镜头{i} seq 必须为 {i}")
+            if s["start"] < 0 or s["end"] <= s["start"]:
+                errors.append(f"镜头{i} 必须满足 0 <= start < end")
+            if s["in"] < 0 or s["out"] <= s["in"]:
+                errors.append(f"镜头{i} 必须满足 0 <= in < out")
+            duration = s["end"] - s["start"]
+            if s["duration"] <= 0 or abs(s["duration"] - duration) > 0.05:
+                errors.append(f"镜头{i} duration 必须为正数且与 end-start 一致")
+            if abs((s["out"] - s["in"]) - duration) > 0.05:
+                errors.append(f"镜头{i} out-in 与 end-start 不一致")
             if abs(s["start"] - prev_end) > 0.05:
                 errors.append(f"镜头{i} 起点 {s['start']} 与前一镜头终点 {prev_end} 断开")
             prev_end = s["end"]
-            rel = s["material"].split("Landscape video/")[-1]
+            for k in ("material", "category", "reason"):
+                if not isinstance(s[k], str) or not s[k].strip():
+                    errors.append(f"镜头{i} {k} 必须为非空文本")
+            entries = s["srt_entries"]
+            if (not isinstance(entries, list) or not entries
+                    or any(type(e) is not int or e <= 0 for e in entries)):
+                errors.append(f"镜头{i} srt_entries 必须为正整数列表")
+            if not isinstance(s["material"], str):
+                continue
+            rel = s["material"].replace("\\", "/").casefold().split("landscape video/")[-1]
             mat = index.get(rel)
             if mat is None:
                 errors.append(f"镜头{i} 素材不在索引: {rel}")
@@ -188,8 +243,8 @@ class Pipeline:
                 self.skip(f"{mode} 版视频")
                 continue
             run("render_video.py", "--project", str(self.project), "--mode", mode)
-            if not want[mode].exists() and legacy[mode].exists():
-                legacy[mode].rename(want[mode])
+            if legacy[mode] != want[mode] and legacy[mode].exists():
+                legacy[mode].replace(want[mode])
                 print(f"  [ok] 归位 {legacy[mode].name} -> {want[mode].name}",
                       flush=True)
 
@@ -233,6 +288,8 @@ class Pipeline:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--id", required=True)
+    ap.add_argument("--language", choices=LANGUAGES, default=None,
+                    help="新项目语言（默认 zh）；英文使用独立项目 ID，续跑自动读取配置")
     ap.add_argument("--script", default=None)
     ap.add_argument("--title-lines", nargs="+", default=None)
     ap.add_argument("--highlight", nargs="*", default=None)

@@ -1,0 +1,5 @@
+# Direct dependencies verified for the video pipeline.
+edge-tts==7.3.1
+imageio-ffmpeg==0.6.0
+Pillow==12.3.0
+PyYAML==6.0.3

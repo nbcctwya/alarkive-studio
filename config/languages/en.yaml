@@ -1,0 +1,44 @@
+# English is opt-in. The Chinese frame/cover configuration remains the base.
+# User prefers Andrew after comparing the English auditions; Ava remains the fallback.
+voice:
+  voice_primary: en-US-AndrewNeural
+  voice_fallback: en-US-AvaNeural
+  rate: "+0%"
+
+frame:
+  fonts:
+    sans_en_bold:
+      - path: "C:/Windows/Fonts/arialbd.ttf"
+      - path: "C:/Windows/Fonts/segoeuib.ttf"
+  header:
+    title_dynamic:
+      font: sans_en_bold
+      wrap: word
+  subtitle:
+    font: sans_en_bold
+    wrap: word
+  footer:
+    brand_name:
+      cn:
+        text: ""
+    slogan:
+      text: "Observing change. Making sense of it."
+      font: serif_en
+      size: 20
+
+cover:
+  common:
+    title:
+      font: serif_en_bold
+      wrap: word
+    brand:
+      name_cn:
+        text: ""
+      slogan:
+        text: "Observing change. Making sense of it."
+        font: serif_en
+        tracking: 0
+  vertical:
+    title:
+      reserved_area:
+        width: 600

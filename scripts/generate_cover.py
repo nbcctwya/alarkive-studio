@@ -28,6 +28,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import generate_frame as gf  # noqa: E402
 from test_dynamic_title import layout_title  # noqa: E402
+from language_profiles import (  # noqa: E402
+    LANGUAGES, apply_profile, project_language,
+)
 
 
 # ------------------------------------------------------------ 绘制辅助
@@ -62,6 +65,8 @@ def draw_title(img, draw, fonts, td, hints, highlights) -> None:
             break
         size -= 2
     if overflow:
+        if td.get("wrap") == "word":
+            raise ValueError("English cover title does not fit; shorten the title or its line hints.")
         print(f"[warn] 标题已达字号下限 {td['min_size']} 仍超出预留区",
               file=sys.stderr)
     font, stroke = fonts.get(td["font"], size)
@@ -228,6 +233,7 @@ def make_contact(imgs: dict[str, Image.Image], cc: dict, fonts,
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--project", default=None)
+    ap.add_argument("--language", choices=LANGUAGES, default=None)
     ap.add_argument("--mode", choices=["vertical", "horizontal", "both"],
                     default="both")
     ap.add_argument("--title-lines", nargs="+", default=None)
@@ -238,9 +244,18 @@ def main() -> None:
         (ROOT / "config" / "frame_v1.yaml").read_text(encoding="utf-8"))
     cover_cfg = yaml.safe_load(
         (ROOT / "config" / "cover_v1.yaml").read_text(encoding="utf-8"))
-    fonts = gf.FontBook(frame_cfg["fonts"])
-
     project = Path(args.project) if args.project else None
+    meta = {}
+    if project is not None and (project / "meta.yaml").exists():
+        meta = yaml.safe_load((project / "meta.yaml").read_text("utf-8"))
+        if args.language is not None and args.language != project_language(meta):
+            sys.exit("[error] --language 与项目语言不一致，请使用独立的语言项目")
+    language = args.language or project_language(meta)
+    frame_cfg = apply_profile(frame_cfg, language, "frame")
+    cover_cfg = apply_profile(cover_cfg, language, "cover")
+    fonts = gf.FontBook(frame_cfg["fonts"])
+    # English previews never replace the existing Chinese preview files.
+    preview_root = ROOT / "preview" if language == "zh" else ROOT / "preview" / "en"
     hints, highlights = resolve_inputs(project, args)
     print(f"[info] 标题 {len(hints)} 行 / 强调词 {highlights}")
 
@@ -254,25 +269,25 @@ def main() -> None:
             p.parent.mkdir(parents=True, exist_ok=True)
             img.convert("RGB").save(p)
             print(f"[ok] {p}  {img.width}x{img.height}")
-        pv = ROOT / "preview" / f"cover_v1_{mode}_preview.png"
+        pv = preview_root / f"cover_v1_{mode}_preview.png"
         pv.parent.mkdir(parents=True, exist_ok=True)
         img.convert("RGB").save(pv)
         print(f"[ok] {pv}")
 
     if len(imgs) == 2:
         make_contact(imgs, cover_cfg["contact"], fonts,
-                     ROOT / "preview" / "cover_v1_contact.jpg")
+                     preview_root / "cover_v1_contact.jpg")
     else:  # 单模式也出 contact：读另一张已有输出补齐
         other = "horizontal" if modes[0] == "vertical" else "vertical"
         cand = []
         if project is not None:
             cand.append(project / "output" / f"cover_{other}_v1.png")
-        cand.append(ROOT / "preview" / f"cover_v1_{other}_preview.png")
+        cand.append(preview_root / f"cover_v1_{other}_preview.png")
         for c in cand:
             if c.exists():
                 imgs[other] = Image.open(c).convert("RGB")
                 make_contact(imgs, cover_cfg["contact"], fonts,
-                             ROOT / "preview" / "cover_v1_contact.jpg")
+                             preview_root / "cover_v1_contact.jpg")
                 break
 
 
